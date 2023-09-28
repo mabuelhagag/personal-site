@@ -5,8 +5,18 @@ import { api } from "@/utils/api";
 
 export default function Home() {
   const message =
-    "Check how I over-complicated this message by checking the dev tools 😝";
-  const hello = message; //api.useQueries((t) => [])); //api.example.hello.useQuery({ text: "from tRPC" });
+    "Check how I over-complicated this message by poking around 😝".split(" ");
+  const hello = api.useQueries((t) =>
+    message.map((word) =>
+      t.example.hello({
+        text: word,
+        link:
+          word === "poking"
+            ? "https://github.com/mabuelhagag/personal-site"
+            : null,
+      }),
+    ),
+  );
 
   return (
     <>
@@ -42,9 +52,30 @@ export default function Home() {
             {"'"}s Mind!
           </h1>
 
-          <p className="text-2xl text-white">
-            {/* {hello.data ? hello.data.greeting : "Loading welcome..."} */}
-            {hello}
+          <p className="font-mono text-2xl font-normal text-white">
+            <>
+              {hello.map((word, i) =>
+                !word.isFetching ? (
+                  <span key={i}>
+                    {word.data?.link ? (
+                      <Link
+                        className="text-[hsl(280,100%,70%)]"
+                        href={word.data.link}
+                        target="_blank"
+                      >
+                        {word.data.word}
+                      </Link>
+                    ) : (
+                      word.data?.word
+                    )}
+                  </span>
+                ) : (
+                  <span key={i} className="text-[hsl(280,100%,70%)]">
+                    {new Array(message[i]?.length).fill("_")}
+                  </span>
+                ),
+              )}
+            </>
           </p>
         </div>
       </main>
