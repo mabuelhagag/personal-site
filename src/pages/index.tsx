@@ -5,7 +5,7 @@ import { api } from "@/utils/api";
 
 export default function Home() {
   const message =
-    "Check how I over-complicated this message by poking around 😝".split(" ");
+    "Check how I over complicated this message by poking around 😝".split(" ");
   const hello = api.useQueries((t) =>
     message.map((word) =>
       t.example.hello({
