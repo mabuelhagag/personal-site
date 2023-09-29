@@ -21,10 +21,21 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Hagag{"'"}s Mind</title>
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
+        <title>Hagag's Mind</title>
         <meta
           name="description"
           content="A personal website for Mohamad Abuelhagag(Hagag)"
+        />
+        <meta
+          property="og:image"
+          content="https://hagag.me/apple-touch-icon.png"
+        />
+        <meta property="og:title" content="Hagag's Mind" />
+        <meta property="og:url" content="https://hagag.me/" />
+        <meta
+          property="og:description"
+          content="You (might) not want to click me!"
         />
         <link
           rel="apple-touch-icon"
