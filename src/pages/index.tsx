@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/react";
 
 import { api } from "@/utils/api";
 
@@ -90,6 +91,7 @@ export default function Home() {
           </p>
         </div>
       </main>
+      <Analytics />
     </>
   );
 }
